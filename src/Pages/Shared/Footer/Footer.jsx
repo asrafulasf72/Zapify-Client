@@ -6,10 +6,8 @@ const Footer = () => {
     <footer className="footer footer-horizontal footer-center bg-neutral text-secondary-content p-10 rounded-2xl">
       <aside>
          <Logo/>
-        <p className="font-bold">
-          ACME Industries Ltd.
-          <br />
-          Providing reliable tech since 1992
+        <p className="font-medium text-[.8rem]">
+        Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments we deliver on time, every time.
         </p>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>
