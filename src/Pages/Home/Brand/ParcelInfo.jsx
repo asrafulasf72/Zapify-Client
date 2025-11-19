@@ -8,7 +8,7 @@ const ParcelInfo = () => {
       <div className="border-2 border-dotted border-gray-300"></div>
 
       <div className="my-10">
-        <div className="flex gap-5 items-center my-4 p-5 bg-base-300 rounded-2xl">
+        <div className="flex flex-col md:flex-row gap-5 items-center my-4 p-5 bg-base-300 rounded-2xl">
           <div>
             <img src={livetarck} alt="" />
           </div>
@@ -25,7 +25,7 @@ const ParcelInfo = () => {
           </div>
         </div>
 
-        <div className="flex gap-5 items-center my-4  p-5 bg-base-300 rounded-2xl">
+        <div className="flex flex-col md:flex-row gap-5 items-center my-4  p-5 bg-base-300 rounded-2xl">
           <div>
             <img src={safeDelivery} alt="" />
           </div>
@@ -39,7 +39,7 @@ const ParcelInfo = () => {
             </p>
           </div>
         </div>
-        <div className="flex gap-5 items-center my-4  p-5 bg-base-300 rounded-2xl">
+        <div className="flex flex-col md:flex-row gap-5 items-center my-4  p-5 bg-base-300 rounded-2xl">
           <div className="">
             <img src={safeDelivery} alt="" />
           </div>

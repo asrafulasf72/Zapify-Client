@@ -38,7 +38,7 @@ const ourService = [
 const OurService = () => {
   return (
     <section
-      className=" bg-secondary my-10 px-30 py-15 rounded-2xl"
+      className=" bg-secondary my-10 md:px-30 md:py-15 py-5 rounded-2xl"
       id="features"
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
