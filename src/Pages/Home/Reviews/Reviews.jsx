@@ -10,7 +10,6 @@ import ReviewCard from "./ReviewCard";
 
 const Reviews = ({ reviewPromise }) => {
   const reviewData = use(reviewPromise);
-  console.log(reviewData);
   return (
     <div>
       <div className=" text-center">
