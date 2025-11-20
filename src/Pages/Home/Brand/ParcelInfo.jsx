@@ -5,7 +5,7 @@ import safeDelivery from "../../../assets/safe-delivery.png";
 const ParcelInfo = () => {
   return (
     <div className="my-10">
-      <div className="border-2 border-dotted border-gray-300"></div>
+      <div className="border-t border-2 border-dashed border-gray-300 my-4"></div>
 
       <div className="my-10">
         <div className="flex flex-col md:flex-row gap-5 items-center my-4 p-5 bg-base-300 rounded-2xl">
@@ -56,7 +56,7 @@ const ParcelInfo = () => {
 
       
       </div>
-       <div className="border-2 border-dotted border-gray-300"></div>
+        <div className="border-t border-2 border-dashed border-gray-300 my-4"></div>
     </div>
   );
 };
