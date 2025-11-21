@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import { Link } from "react-router";
+import LoginWithGoogleBtn from "../SocialLogin/LoginWithGoogleBtn";
 
 const Register = () => {
     const {register,handleSubmit, formState:{errors}}=useForm();
@@ -18,8 +19,8 @@ const Register = () => {
     }
   return (
     <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
-      <h3 className="text-3xl text-center">Welcome Back</h3>
-        <p className="text-center">Please Login Here!</p>
+      <h3 className="text-3xl text-center">Create An Account</h3>
+        <p className="text-center">Register With Zapify!</p>
       <form onSubmit={handleSubmit(handleRegistration)} className="card-body">
         <fieldset className="fieldset">
           <label className="label">Email</label>
@@ -48,6 +49,7 @@ const Register = () => {
         </fieldset>
         <p>Already have an account? <Link to='/login' className="text-blue-400">Login</Link></p>
       </form>
+      <LoginWithGoogleBtn />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import { Link } from "react-router";
+import LoginWithGoogleBtn from "../SocialLogin/LoginWithGoogleBtn";
 
 const Login = () => {
 
@@ -43,6 +44,7 @@ const Login = () => {
         </fieldset>
         <p>Are you New to Zapify?<Link className="text-blue-400" to='/register'>Register</Link></p>
       </form>
+      <LoginWithGoogleBtn />
     </div>
   );
 };
