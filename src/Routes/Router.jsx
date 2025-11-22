@@ -5,6 +5,8 @@ import Coverage from "../Pages/Coverage/Coverage";
 import AuthLayout from "../Layout/AuthLayout";
 import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
+import PrivateRouter from "./PrivateRouter";
+import BeaRider from "../Pages/Rider/BeaRider";
 
 
 export const router=createBrowserRouter([
@@ -15,6 +17,10 @@ export const router=createBrowserRouter([
             {
                 index:true,
                 element:<Home />
+            },
+            {
+               path:'/rider',
+               element: <PrivateRouter><BeaRider /></PrivateRouter>
             },
             {
                 path:'/coverage',

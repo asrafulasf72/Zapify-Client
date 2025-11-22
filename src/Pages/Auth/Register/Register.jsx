@@ -1,13 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import LoginWithGoogleBtn from "../SocialLogin/LoginWithGoogleBtn";
 import axios from "axios";
 
 const Register = () => {
     const {register,handleSubmit, formState:{errors}}=useForm();
     const {registerUser,UpdateUserProfile}=useAuth();
+    const location=useLocation();
+    const navigate=useNavigate()
 
     const handleRegistration =(data)=>{
         console.log('After Submite: ', data.photo[0])
@@ -30,6 +32,7 @@ const Register = () => {
              UpdateUserProfile(updateProfile)
              .then()
              .catch(error=>console.log(error))
+             navigate(location?.state || '/')
            })
           // Update Profile
         }).catch((error)=>{
@@ -74,7 +77,7 @@ const Register = () => {
           </div>
           <button className="btn btn-neutral mt-4">Register</button>
         </fieldset>
-        <p>Already have an account? <Link to='/login' className="text-blue-400">Login</Link></p>
+        <p>Already have an account? <Link state={location.state} to='/login' className="text-blue-400">Login</Link></p>
       </form>
       <LoginWithGoogleBtn />
     </div>
