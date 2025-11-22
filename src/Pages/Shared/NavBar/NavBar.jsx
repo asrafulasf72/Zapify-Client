@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../../../Component/Logo";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
+import { BsArrowUpRightCircle } from "react-icons/bs";
 
 const NavBar = () => {
 
@@ -56,6 +57,8 @@ const NavBar = () => {
         {
           user? <Link onClick={handleLogout} className="btn">Log Out</Link> : <Link to='/login' className="btn">Login</Link>
         }
+            <button className="btn bg-primary mx-4 text-black text-[1rem] font-medium"><Link>Be A Rider</Link></button>
+         
       </div>
     </div>
   );

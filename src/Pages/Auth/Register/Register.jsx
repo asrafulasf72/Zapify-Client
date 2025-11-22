@@ -3,16 +3,35 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import { Link } from "react-router";
 import LoginWithGoogleBtn from "../SocialLogin/LoginWithGoogleBtn";
+import axios from "axios";
 
 const Register = () => {
     const {register,handleSubmit, formState:{errors}}=useForm();
-    const {registerUser}=useAuth();
+    const {registerUser,UpdateUserProfile}=useAuth();
 
     const handleRegistration =(data)=>{
-        console.log('After Submite: ', data)
+        console.log('After Submite: ', data.photo[0])
+        const profileImg=data.photo[0]
         registerUser(data.email, data.password)
         .then((res)=>{
           console.log(res.user)
+
+          // Store the Image Get the Photo URL
+           const formData= new FormData();
+           formData.append('image', profileImg)
+            const imageURL=`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_Image_host_Key}`
+           axios.post(imageURL, formData)
+           .then((res)=>{
+             console.log('after image Upload:', res.data.data.url)
+             const updateProfile={
+               displayName:data.name,
+               photoURL:res.data.data.url
+             }
+             UpdateUserProfile(updateProfile)
+             .then()
+             .catch(error=>console.log(error))
+           })
+          // Update Profile
         }).catch((error)=>{
           console.log(error)
         })
@@ -23,6 +42,14 @@ const Register = () => {
         <p className="text-center">Register With Zapify!</p>
       <form onSubmit={handleSubmit(handleRegistration)} className="card-body">
         <fieldset className="fieldset">
+          <label className="label">Name</label>
+          <input type="text" className="input" {...register('name', {required: true})} placeholder="Your Name" />
+          {errors.name?. type==='required' && <p className="text-red-500">Name Is required</p>}
+
+          <label className="label">Photo</label>
+          <input type="file" className="file-input" {...register('photo', {required: true})} placeholder="Your Photo" />
+          {errors.name?. type==='required' && <p className="text-red-500">Photo Is required</p>}
+
           <label className="label">Email</label>
           <input type="email" className="input" {...register('email', {required: true})} placeholder="Email" />
           {errors.email?. type==='required' && <p className="text-red-500">Email Is required</p>}
