@@ -25,7 +25,8 @@ export const router=createBrowserRouter([
             },
             {
               path:'/send-percel',
-              element:<PrivateRouter><SendParcel /> </PrivateRouter>
+              element:<PrivateRouter><SendParcel /> </PrivateRouter>,
+               loader: ()=> fetch('/public/warehouses.json').then((res)=>res.json())
             },
             {
                 path:'/coverage',
