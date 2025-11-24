@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 
 const SendParcel = () => {
  const { register, handleSubmit, control} = useForm();
@@ -20,6 +21,43 @@ const SendParcel = () => {
 
   const handleSendParcel = (data) => {
     console.log(data);
+    const isDocumnet= data.percelType ==='document'
+    const isSameDistrict=data.senderDistrict===data.recevierDistrict
+    const parcelWeight=parseFloat(data.parcelWeight)
+
+    let cost=0;
+
+    if(isDocumnet){
+      cost= isSameDistrict ? 60 : 80;
+    }else{
+       if(parcelWeight <3){
+         cost = isSameDistrict ? 110 : 150; 
+       }else{
+          const minCharge= isSameDistrict ?110:150;
+          const extraWeight= parcelWeight -3;
+          const extraCharge= isSameDistrict ? extraWeight *40 : extraWeight *40+40;
+          cost=minCharge+extraCharge
+
+
+       }
+    }
+         Swal.fire({
+  title: "Agree With The Cost!",
+  text: `Chage Will be ${cost} taka to Send your (${data.percelType.toUpperCase()}) Type Parcel`,
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, Agree"
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "success"
+    });
+  }
+});
   };
      
   return (
