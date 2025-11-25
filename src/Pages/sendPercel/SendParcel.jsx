@@ -52,7 +52,7 @@ const SendParcel = () => {
 }).then((result) => {
   if (result.isConfirmed) {
     Swal.fire({
-      title: "Deleted!",
+      title: "Deleted Successfully Done!!",
       text: "Your file has been deleted.",
       icon: "success"
     });
