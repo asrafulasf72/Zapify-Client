@@ -48,6 +48,7 @@ const SendParcel = () => {
 
       }
     }
+    data.cost=cost;
     Swal.fire({
       title: "Agree With The Cost!",
       text: `Chage Will be ${cost} taka to Send your (${data.percelType.toUpperCase()}) Type Parcel`,
