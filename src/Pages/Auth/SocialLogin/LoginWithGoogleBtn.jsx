@@ -10,7 +10,7 @@ const LoginWithGoogleBtn = () => {
     const handleSignIn=()=>{
           signInWithGoogle()
           .then((res)=>{
-            console.log(res.user)
+            // console.log(res.user)
             navigate(location?.state || '/')
           }).catch((error)=>{
             console.log(error)
