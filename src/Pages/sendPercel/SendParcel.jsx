@@ -1,16 +1,16 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { useAxiosSecure } from "../../Hooks/useAxiosSecure";
-import AuthProvider from "../../Context/AuthProvider";
 import useAuth from "../../Hooks/useAuth";
 
 const SendParcel = () => {
   const { register, handleSubmit, control } = useForm();
-   
-  const axiosSecure=useAxiosSecure();
-  const {user}=useAuth();
+
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const navigate=useNavigate();
 
   const senderRegion = useWatch({ control, name: 'senderRegion' })
   const recevierRegion = useWatch({ control, name: 'recevierRegion' })
@@ -48,7 +48,7 @@ const SendParcel = () => {
 
       }
     }
-    data.cost=cost;
+    data.cost = cost;
     Swal.fire({
       title: "Agree With The Cost!",
       text: `Chage Will be ${cost} taka to Send your (${data.percelType.toUpperCase()}) Type Parcel`,
@@ -56,22 +56,25 @@ const SendParcel = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Agree"
+      confirmButtonText: "Cofirm Continue to Pay"
     }).then((result) => {
       if (result.isConfirmed) {
 
         // save the parcel info to the database
         axiosSecure.post('/parcels', data)
-        .then((res)=>{
-          console.log('After Submission Data: ', res.data)
-        })
-
-
-        // Swal.fire({
-        //   title: "Deleted Successfully Done!!",
-        //   text: "Your file has been deleted.",
-        //   icon: "success"
-        // });
+          .then((res) => {
+            console.log('After Submission Data: ', res.data)
+            if (res.data.insertedId) {
+              navigate('/dashboard/my-parcels')
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Parcel has Created Please Pay Now",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          })
       }
     });
   };

@@ -51,6 +51,18 @@ const MyParcels = () => {
             }
         });
     }
+
+    const handlePayment= async(parcel)=>{
+           const paymentInfo={
+            cost:parcel.cost,
+            parcelId:parcel._id,
+            senderEmail:parcel.senderEmail,
+            parcelName:parcel.parcelName
+        }
+        const res= await axiosSecure.post('/create-checkout-session',paymentInfo)
+        console.log(res.data.url)
+         window.open(res.data.url, "_blank");
+    }
     return (
         <div className='my-5 px-5'>
             <p>My Parcels: {parcels.length}</p>
@@ -77,7 +89,7 @@ const MyParcels = () => {
                                     <td>{parcel.cost}</td>
                                     <td>                            
                                        {
-                                         parcel.paymentStatus === 'paid'?<span className='text-green-400 font-bold'>Paid</span>: <Link to={`/dashboard/payment/${parcel._id}`}><button className="btn btn-primary text-black font-bold">Pay Now</button></Link>
+                                         parcel.paymentStatus === 'paid'?<span className='text-green-400 font-bold'>Paid</span>: <button onClick={()=>handlePayment(parcel)} className="btn btn-primary text-black font-bold">Pay Now</button>
                                        }
                                     </td>
                                     <td>{parcel.deliveryStatus}</td>
@@ -89,7 +101,7 @@ const MyParcels = () => {
                                         <button className='btn btn-square hover:bg-primary'>
                                             <FiEdit />
                                         </button>
-                                        <button onClick={() => handleParcelDelete(parcels._id)} className='btn btn-square hover:bg-primary'>
+                                        <button onClick={() => handleParcelDelete(parcel._id)} className='btn btn-square hover:bg-primary'>
                                             <FaTrashCan />
                                         </button>
 

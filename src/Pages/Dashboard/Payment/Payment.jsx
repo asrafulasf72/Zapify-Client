@@ -23,7 +23,7 @@ import { useQuery } from '@tanstack/react-query';
         }
 
         const res= await axiosSecure.post('/create-checkout-session',paymentInfo)
-        window.location.href = res.data.url
+        window.open(res.data.url, "_blank");
     }
 
     if(isLoading){
