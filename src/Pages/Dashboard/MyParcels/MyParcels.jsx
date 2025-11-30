@@ -60,7 +60,7 @@ const MyParcels = () => {
             parcelName:parcel.parcelName
         }
         const res= await axiosSecure.post('/create-checkout-session',paymentInfo)
-        console.log(res.data.url)
+        // console.log(res.data.url)
          window.open(res.data.url, "_blank");
     }
     return (
