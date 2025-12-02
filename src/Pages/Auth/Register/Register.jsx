@@ -4,12 +4,15 @@ import useAuth from "../../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
 import LoginWithGoogleBtn from "../SocialLogin/LoginWithGoogleBtn";
 import axios from "axios";
+import { useAxiosSecure } from "../../../Hooks/useAxiosSecure";
 
 const Register = () => {
     const {register,handleSubmit, formState:{errors}}=useForm();
     const {registerUser,UpdateUserProfile}=useAuth();
     const location=useLocation();
-    const navigate=useNavigate()
+    const navigate=useNavigate();
+
+    const axiosSecure=useAxiosSecure();
 
     const handleRegistration =(data)=>{
         console.log('After Submite: ', data.photo[0])
@@ -24,10 +27,30 @@ const Register = () => {
             const imageURL=`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_Image_host_Key}`
            axios.post(imageURL, formData)
            .then((res)=>{
-             console.log('after image Upload:', res.data.data.url)
+             const photoURL=res.data.data.url
+
+
+
+              const userInfo={
+                  email:data.email,
+                  displayName:data.name,
+                  photoURL:photoURL,
+
+              }
+            // Create User In the DataBase 
+
+               axiosSecure.post('/users', userInfo)
+               .then((res)=>{
+                if(res.data.insertedId){
+                  console.log("User Created In Dataase")
+                }
+               })
+
+
+            //  Update Profile Here
              const updateProfile={
                displayName:data.name,
-               photoURL:res.data.data.url
+               photoURL:photoURL,
              }
              UpdateUserProfile(updateProfile)
              .then()

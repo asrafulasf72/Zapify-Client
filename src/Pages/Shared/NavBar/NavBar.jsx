@@ -10,8 +10,8 @@ const NavBar = () => {
   const handleLogout=()=>{
        userLogout()
        .then()
-       .then((error)=>{
-        console.log(error)
+       .then(()=>{
+        
        })
   }
     const navLink=<>

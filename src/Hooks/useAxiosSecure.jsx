@@ -43,6 +43,6 @@ export const useAxiosSecure = () => {
           axiosSecure.interceptors.response.eject(responseInterceptor)
       }
 
-  },[user])
+  },[user, userLogout, navigate])
   return axiosSecure;
 }

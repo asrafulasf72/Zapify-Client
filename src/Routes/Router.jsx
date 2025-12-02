@@ -27,7 +27,8 @@ export const router=createBrowserRouter([
             },
             {
                path:'/rider',
-               element: <PrivateRouter><BeaRider /></PrivateRouter>
+               element: <PrivateRouter><BeaRider /></PrivateRouter>,
+               loader: ()=> fetch('/public/warehouses.json').then((res)=>res.json())
             },
             {
               path:'/send-percel',

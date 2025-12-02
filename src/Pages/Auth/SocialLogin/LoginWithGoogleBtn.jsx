@@ -1,9 +1,11 @@
 import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router";
+import { useAxiosSecure } from "../../../Hooks/useAxiosSecure";
 
 const LoginWithGoogleBtn = () => {
     const {signInWithGoogle}=useAuth();
+    const axiosSecure = useAxiosSecure();
     const location=useLocation();
     const navigate=useNavigate();
 
@@ -11,7 +13,18 @@ const LoginWithGoogleBtn = () => {
           signInWithGoogle()
           .then((res)=>{
             // console.log(res.user)
-            navigate(location?.state || '/')
+                  const userInfo={
+                  email:res.user.email,
+                  displayName:res.user.displayName,
+                  photoURL:res.user.photoURL,
+
+              }
+             axiosSecure.post('/users', userInfo)
+             .then((res)=>{
+              console.log('Social Use Has been Stores: ', res.data)
+              navigate(location?.state || '/')
+             })
+            
           }).catch((error)=>{
             console.log(error)
           })
