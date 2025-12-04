@@ -76,6 +76,7 @@ const MyParcels = () => {
                             <th>Name</th>
                             <th>Cost</th>
                             <th>Payment</th>
+                            <th>Tracking Id</th>
                             <th>Delivery Status</th>
                             <th>Actions</th>
                         </tr>
@@ -92,6 +93,7 @@ const MyParcels = () => {
                                          parcel.paymentStatus === 'paid'?<span className='text-green-400 font-bold'>Paid</span>: <button onClick={()=>handlePayment(parcel)} className="btn btn-primary text-black font-bold">Pay Now</button>
                                        }
                                     </td>
+                                    <td>{parcel.trackingId}</td>
                                     <td>{parcel.deliveryStatus}</td>
                                     <td className='flex gap-3'>
 
