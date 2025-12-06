@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router'
 import { FaBoxOpen, FaUsers } from "react-icons/fa6";
-import { FaHistory } from "react-icons/fa";
+import { FaHistory, FaTasks } from "react-icons/fa";
 import { MdAssignmentInd, MdDirectionsBike } from "react-icons/md";
+import { SiGoogletasks } from "react-icons/si";
 import useRole from '../Hooks/useRole';
 
 export const DashboardLayout = () => {
@@ -57,6 +58,33 @@ export const DashboardLayout = () => {
               </NavLink>
 
             </li>
+            {/* Rider Only Links */}
+            {
+              role === 'rider' && <>
+                <li>
+
+                  <NavLink to='/dashboard/assigned-deliveries' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assigned Deliveries">
+                    {/* Home icon */}
+                    <FaTasks/>
+                    <span className="is-drawer-close:hidden">Assigned Deliveries</span>
+                  </NavLink>
+
+                </li>
+                <li>
+
+                  <NavLink to='/dashboard/completed-deliveries' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Completed Deliveries">
+                    {/* Home icon */}
+                    <SiGoogletasks />
+                    <span className="is-drawer-close:hidden">Completed Deliveries</span>
+                  </NavLink>
+
+                </li>
+
+
+              </>
+            }
+
+            {/* Admin Only Links */}
 
             {
               role === 'admin' && <>

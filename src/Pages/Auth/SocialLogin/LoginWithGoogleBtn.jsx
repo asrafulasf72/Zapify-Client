@@ -21,7 +21,7 @@ const LoginWithGoogleBtn = () => {
               }
              axiosSecure.post('/users', userInfo)
              .then((res)=>{
-              console.log('Social User Has been Stores: ', res.data)
+              // console.log('Social User Has been Stores: ', res.data)
               navigate(location?.state || '/')
              })
             
