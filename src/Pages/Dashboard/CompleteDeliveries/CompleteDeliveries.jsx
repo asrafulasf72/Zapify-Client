@@ -50,7 +50,7 @@ const CompleteDeliveries = () => {
                                 <td>{parcel.senderDistrict}</td>
                                 <td>{calculateRiderPayOut(parcel)}</td>
                                 <td>
-                                    <button className='btn btn-primary text-black'>Find Rider</button>
+                                    <button className='btn btn-primary text-black'>Cash Out</button>
                                 </td>
                             </tr>)
                         }

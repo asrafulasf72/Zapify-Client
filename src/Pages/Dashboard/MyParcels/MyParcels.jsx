@@ -93,7 +93,9 @@ const MyParcels = () => {
                                          parcel.paymentStatus === 'paid'?<span className='text-green-400 font-bold'>Paid</span>: <button onClick={()=>handlePayment(parcel)} className="btn btn-primary text-black font-bold">Pay Now</button>
                                        }
                                     </td>
-                                    <td>{parcel.trackingId}</td>
+                                    <td>
+                                        <Link to={`/track-parcel/${parcel.trackingId}`}>{parcel.trackingId}</Link>
+                                    </td>
                                     <td>{parcel.deliveryStatus}</td>
                                     <td className='flex gap-3'>
 
